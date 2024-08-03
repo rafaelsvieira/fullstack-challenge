@@ -1,10 +1,19 @@
 name: FullStack Challenge
 
-on: [push]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - 'main'
 
 jobs:
   NodeJS-CI:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: codebase/rdicidr-0.1.0
     steps:
       - uses: actions/checkout@v4
 
