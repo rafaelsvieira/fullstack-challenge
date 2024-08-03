@@ -1,0 +1,26 @@
+name: FullStack Challenge
+
+on: [push]
+
+jobs:
+  NodeJS-CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '15.x'
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - run: npm run prettier
+
+      - run: npm run test
+        env:
+          CI: true
+
+      - run: npm run build
